@@ -420,16 +420,16 @@ INSERT INTO Curve_Points(SESSION_ID,CURVE_ID,POSITION,POWER,PRICE)VALUES(1,120,2
 -- Block_Orders TABLE 
 -- Noticed: Need different External ID to work
 
--- block 1 (Accepted with AR=0.5)--------------------------------------------------------------------------------------------
+--Circular linked block 1 (Accepted with AR=0.5)--------------------------------------------------------------------------------------------
 INSERT INTO BLOCK_ORDERS(SESSION_ID,BLOCK_ID,TIME_RESOLUTION,NEMO_HUB_ID,EXTERNAL_ID,TYPE,TIME_STAMP,SIDE,MIN_ACCEPTANCE_RATIO,PRICE,EXCLUSIVE_GROUP_ID,HASH)VALUES(1,1,15,1401,'ID1','C02',TO_TIMESTAMP('2026-01-29 00:45:00', 'YYYY-MM-DD HH24:MI:SS'),'S',0.3,80,null,null);
 INSERT INTO BLOCK_ORDERS(SESSION_ID,BLOCK_ID,TIME_RESOLUTION,NEMO_HUB_ID,EXTERNAL_ID,TYPE,TIME_STAMP,SIDE,MIN_ACCEPTANCE_RATIO,PRICE,EXCLUSIVE_GROUP_ID,HASH)VALUES(1,2,15,1401,'ID2','C02',TO_TIMESTAMP('2026-01-29 00:45:00', 'YYYY-MM-DD HH24:MI:SS'),'B',0.5,100,null,null);
 
--- block 2 (REJECTED)--------------------------------------------------------------------------------------------------------
+-- Circular linked block 2 (REJECTED)--------------------------------------------------------------------------------------------------------
 INSERT INTO BLOCK_ORDERS(SESSION_ID,BLOCK_ID,TIME_RESOLUTION,NEMO_HUB_ID,EXTERNAL_ID,TYPE,TIME_STAMP,SIDE,MIN_ACCEPTANCE_RATIO,PRICE,EXCLUSIVE_GROUP_ID,HASH)VALUES(1,3,15,1401,'ID3','C02',TO_TIMESTAMP('2026-01-29 00:45:00', 'YYYY-MM-DD HH24:MI:SS'),'S',1,80,null,null);
 INSERT INTO BLOCK_ORDERS(SESSION_ID,BLOCK_ID,TIME_RESOLUTION,NEMO_HUB_ID,EXTERNAL_ID,TYPE,TIME_STAMP,SIDE,MIN_ACCEPTANCE_RATIO,PRICE,EXCLUSIVE_GROUP_ID,HASH)VALUES(1,4,15,1401,'ID4','C02',TO_TIMESTAMP('2026-01-29 00:45:00', 'YYYY-MM-DD HH24:MI:SS'),'B',1,100,null,null);
 
 
--- block 3 (CIRCULAR WITH SAME MTU SELL AND BUY OFFERS - ACCEPTED AR=100)----------------------------------------------------
+--Circular linked block 3 (CIRCULAR WITH SAME MTU SELL AND BUY OFFERS - ACCEPTED AR=100)----------------------------------------------------
 INSERT INTO BLOCK_ORDERS(SESSION_ID,BLOCK_ID,TIME_RESOLUTION,NEMO_HUB_ID,EXTERNAL_ID,TYPE,TIME_STAMP,SIDE,MIN_ACCEPTANCE_RATIO,PRICE,EXCLUSIVE_GROUP_ID,HASH)VALUES(1,5,15,1401,'ID5','C02',TO_TIMESTAMP('2026-01-29 00:45:00', 'YYYY-MM-DD HH24:MI:SS'),'S',1,80,null,null);
 INSERT INTO BLOCK_ORDERS(SESSION_ID,BLOCK_ID,TIME_RESOLUTION,NEMO_HUB_ID,EXTERNAL_ID,TYPE,TIME_STAMP,SIDE,MIN_ACCEPTANCE_RATIO,PRICE,EXCLUSIVE_GROUP_ID,HASH)VALUES(1,6,15,1401,'ID6','C02',TO_TIMESTAMP('2026-01-29 00:45:00', 'YYYY-MM-DD HH24:MI:SS'),'B',1,100,null,null);
 
@@ -437,15 +437,15 @@ INSERT INTO BLOCK_ORDERS(SESSION_ID,BLOCK_ID,TIME_RESOLUTION,NEMO_HUB_ID,EXTERNA
 -- =========================================================================================================================================================
 -- Block_Order_Links TABLE
 
--- circ block 1 (Accepted with AR=0.5)--------------------------------------------------------------------------------------------
+--Circular linked block 1 (Accepted with AR=0.5)--------------------------------------------------------------------------------------------
 INSERT INTO BLOCK_ORDER_LINKS(SESSION_ID,CHILD_BLOCK_ID,PARENT_BLOCK_ID)VALUES(1,1,2);
 INSERT INTO BLOCK_ORDER_LINKS(SESSION_ID,CHILD_BLOCK_ID,PARENT_BLOCK_ID)VALUES(1,2,1);
 
--- circ block 2 (REJECTED)--------------------------------------------------------------------------------------------------------
+-- Circular linked block 2 (REJECTED)--------------------------------------------------------------------------------------------------------
 INSERT INTO BLOCK_ORDER_LINKS(SESSION_ID,CHILD_BLOCK_ID,PARENT_BLOCK_ID)VALUES(1,3,4);
 INSERT INTO BLOCK_ORDER_LINKS(SESSION_ID,CHILD_BLOCK_ID,PARENT_BLOCK_ID)VALUES(1,4,3);
 
--- circ block 3 (CIRCULAR WITH SAME MTU SELL AND BUY OFFERS - ACCEPTED AR=100)----------------------------------------------------
+--Circular linked block 3 (CIRCULAR WITH SAME MTU SELL AND BUY OFFERS - ACCEPTED AR=100)----------------------------------------------------
 INSERT INTO BLOCK_ORDER_LINKS(SESSION_ID,CHILD_BLOCK_ID,PARENT_BLOCK_ID)VALUES(1,5,6);
 INSERT INTO BLOCK_ORDER_LINKS(SESSION_ID,CHILD_BLOCK_ID,PARENT_BLOCK_ID)VALUES(1,6,5);
 
