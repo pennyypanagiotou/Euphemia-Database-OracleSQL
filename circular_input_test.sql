@@ -1,13 +1,14 @@
 -- =======================================================================================================================================
 -- Input file for Euphemia 11.4_fix3
 
---====: MEANS A TABLE SECTION
-------: MEANS A CATEGORIZATION OF DATA INSIDE A TABLE
+--====: MEANS SECTION - A NEW TABLE TABLE 
+------: MEANS CATEGORIZATION OF DATA INSIDE A TABLE
 -- ====================================================================================================================================
 
 
 -- =============================
 -- delete TABLES DATA
+DELETE FROM ALGORITHM_PARAMETERS;
 DELETE FROM Block_Order_Period_Constraints;
 DELETE FROM BLOCK_ORDER_LINKS;
 DELETE FROM BLOCK_ORDERS;
@@ -399,6 +400,10 @@ INSERT INTO Curve_Points(SESSION_ID,CURVE_ID,POSITION,POWER,PRICE)VALUES(1,99,3,
 INSERT INTO Curve_Points(SESSION_ID,CURVE_ID,POSITION,POWER,PRICE)VALUES(1,100,2,100,-500);
 INSERT INTO Curve_Points(SESSION_ID,CURVE_ID,POSITION,POWER,PRICE)VALUES(1,100,3,100,400);
 
+INSERT INTO Curve_Points(SESSION_ID,CURVE_ID,POSITION,POWER,PRICE)VALUES(1,118,2,300,-500);
+INSERT INTO Curve_Points(SESSION_ID,CURVE_ID,POSITION,POWER,PRICE)VALUES(1,119,2,300,-500);
+INSERT INTO Curve_Points(SESSION_ID,CURVE_ID,POSITION,POWER,PRICE)VALUES(1,120,2,300,-500);
+
 -- =====================================================================
 -- Merit_Orders TABLE
 
@@ -432,15 +437,15 @@ INSERT INTO BLOCK_ORDERS(SESSION_ID,BLOCK_ID,TIME_RESOLUTION,NEMO_HUB_ID,EXTERNA
 -- =========================================================================================================================================================
 -- Block_Order_Links TABLE
 
--- block 1 (Accepted with AR=0.5)--------------------------------------------------------------------------------------------
+-- circ block 1 (Accepted with AR=0.5)--------------------------------------------------------------------------------------------
 INSERT INTO BLOCK_ORDER_LINKS(SESSION_ID,CHILD_BLOCK_ID,PARENT_BLOCK_ID)VALUES(1,1,2);
 INSERT INTO BLOCK_ORDER_LINKS(SESSION_ID,CHILD_BLOCK_ID,PARENT_BLOCK_ID)VALUES(1,2,1);
 
--- block 2 (REJECTED)--------------------------------------------------------------------------------------------------------
+-- circ block 2 (REJECTED)--------------------------------------------------------------------------------------------------------
 INSERT INTO BLOCK_ORDER_LINKS(SESSION_ID,CHILD_BLOCK_ID,PARENT_BLOCK_ID)VALUES(1,3,4);
 INSERT INTO BLOCK_ORDER_LINKS(SESSION_ID,CHILD_BLOCK_ID,PARENT_BLOCK_ID)VALUES(1,4,3);
 
--- block 3 (CIRCULAR WITH SAME MTU SELL AND BUY OFFERS - ACCEPTED AR=100)----------------------------------------------------
+-- circ block 3 (CIRCULAR WITH SAME MTU SELL AND BUY OFFERS - ACCEPTED AR=100)----------------------------------------------------
 INSERT INTO BLOCK_ORDER_LINKS(SESSION_ID,CHILD_BLOCK_ID,PARENT_BLOCK_ID)VALUES(1,5,6);
 INSERT INTO BLOCK_ORDER_LINKS(SESSION_ID,CHILD_BLOCK_ID,PARENT_BLOCK_ID)VALUES(1,6,5);
 
@@ -478,7 +483,6 @@ INSERT INTO BLOCK_ORDER_PERIOD_CONSTRAINTS(SESSION_ID,BLOCK_ID,PERIOD,POWER)VALU
 INSERT INTO BLOCK_ORDER_PERIOD_CONSTRAINTS(SESSION_ID,BLOCK_ID,PERIOD,POWER)VALUES(1,5,32,302);
 INSERT INTO BLOCK_ORDER_PERIOD_CONSTRAINTS(SESSION_ID,BLOCK_ID,PERIOD,POWER)VALUES(1,5,33,303);
 INSERT INTO BLOCK_ORDER_PERIOD_CONSTRAINTS(SESSION_ID,BLOCK_ID,PERIOD,POWER)VALUES(1,5,34,304);
-
 
 --Buy Block
 INSERT INTO BLOCK_ORDER_PERIOD_CONSTRAINTS(SESSION_ID,BLOCK_ID,PERIOD,POWER)VALUES(1,6,32,302);
